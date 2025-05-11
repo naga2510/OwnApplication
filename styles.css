@@ -1,119 +1,156 @@
+/* Global Styles */
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #1c1c1c;
-    color: white;
     margin: 0;
     padding: 0;
+    background-color: #1c1c1c;
+    color: white;
+}
+
+h1, h2, h3 {
+    font-family: 'Open Sans', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
 header {
     background-color: black;
     color: yellow;
-    padding: 1rem;
+    padding: 2rem 0;
     text-align: center;
 }
 
 .brand-name {
-    font-size: 2rem;
-    margin: 0;
+    font-size: 10rem;
+    font-weight: 600;
 }
 
 .tagline {
-    font-size: 1rem;
-    margin: 0;
-}
-
-.hero {
-    text-align: center;
-    padding: 2rem;
-}
-
-.bike-categories {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    padding: 2rem;
-}
-
-.bike-card {
-    background-color: black;
-    padding: 1rem;
-    border-radius: 5px;
-    text-align: center;
-}
-
-.login-form, #adminContent {
-    text-align: center;
-    margin: 2rem;
-}
-
-button {
-    background-color: yellow;
-    color: black;
-    padding: 0.5rem 1rem;
-    margin: 0.5rem;
-    cursor: pointer;
-}
-/* Header Styling */
-header {
-    background-color: #000;
-    color: #FFD700;
-    padding: 1rem 0;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
-}
-
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-}
-
-.logo h1 {
-    font-size: 2rem;
-    font-weight: 700;
-    margin: 0;
-}
-
-.logo p {
-    font-size: 0.9rem;
-    margin: 0;
+    font-size: 1.5rem;
     font-weight: 400;
+    margin-top: 10px;
 }
 
 .nav-links {
-    list-style: none;
     display: flex;
-    gap: 2rem;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+}
+
+.nav-links li {
+    margin: 0 1.5rem;
 }
 
 .nav-links a {
-    color: #FFD700;
-    text-decoration: none;
+    color: yellow;
     font-size: 1.2rem;
+    font-weight: 600;
     transition: color 0.3s;
 }
 
 .nav-links a:hover {
-    color: #fff;
+    color: white;
 }
 
-@media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+/* Hero Section */
+.hero {
+    background-color: #333;
+    padding: 5rem 0;
+    text-align: center;
+    color: yellow;
+}
 
-    .nav-links {
-        flex-direction: column;
-        gap: 1rem;
-        margin-top: 1rem;
-    }
+.hero-content h2 {
+    font-size: 3rem;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-top: 20px;
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: yellow;
+    color: black;
+    padding: 10px 20px;
+    margin-top: 20px;
+    font-weight: 600;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+    background-color: white;
+    color: yellow;
+}
+
+/* Bike Categories Section */
+.bike-categories {
+    display: flex;
+    justify-content: space-around;
+    padding: 2rem;
+    gap: 20px;
+}
+
+.bike-card {
+    background-color: black;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    width: 30%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.bike-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.bike-card h3 {
+    margin-top: 15px;
+    font-size: 1.5rem;
+}
+
+.bike-card p {
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+/* About Section */
+#about {
+    padding: 3rem 2rem;
+    background-color: #333;
+    text-align: center;
+}
+
+#about p {
+    font-size: 1.2rem;
+}
+
+/* Footer */
+footer {
+    background-color: black;
+    color: yellow;
+    text-align: center;
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+footer p {
+    font-size: 1rem;
+}
+
+.marginTopBottomZero {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-family: 'Broadway';
 }
