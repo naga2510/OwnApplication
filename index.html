@@ -5,22 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Revon - RENT-REV-RIDE</title>
 
-    <!-- Google Fonts -->
+    <!-- Importing Google Fonts for a sleek modern look -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 
-    <!-- CSS Stylesheet -->
+    <!-- Linking the CSS stylesheet -->
     <link rel="stylesheet" href="styles.css">
-
-    <!-- Swiper.js Styles -->
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 </head>
 <body>
-
 <!-- Navigation Bar -->
 <header>
     <nav>
-        <h1 class="brand-name">Revon</h1>
+        <h1 class="brand-name marginTopBottomZero">Revon</h1>
         <p class="tagline">RENT-REV-RIDE</p>
+        
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
@@ -30,13 +27,12 @@
     </nav>
 </header>
 
-<!-- Hero Section -->
 <section id="home" class="hero">
     <div class="scroll-container">
-        <!-- Scroll Buttons -->
+        <!-- Scroll Left Button -->
         <button class="scroll-btn left" onclick="scrollLeft()">&#9664;</button>
         
-        <!-- Bike Card Grid -->
+        <!-- Scrollable Grid -->
         <div class="hero-grid" id="scrollableGrid">
             <div class="hero-card">
                 <img src="./duke790.jpg" alt="Duke 790" class="hero-image">
@@ -58,8 +54,14 @@
         <!-- Scroll Right Button -->
         <button class="scroll-btn right" onclick="scrollRight()">&#9654;</button>
     </div>
+</section>
+
+<!-- Swiper.js Styles -->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+<section id="home" class="hero">
     <div class="hero-content">
-        <h2>Explore The Thrill of Riding</h2>
+        <h2 class="marginTopBottomZero">Explore The Thrill of Riding</h2>
         <p>Your trusted motorbike rental service.</p>
         <a href="#bikes" class="cta-button">Book Your Ride</a>
     </div>
@@ -93,6 +95,56 @@
     </div>
 </section>
 
+<h2>Available Bikes</h2>
+<div id="bikeList"></div>
+
+<script type="module">
+    // Import Firebase SDK
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-app.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-database.js";
+
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyCCoJ7lkSPdih-F_hEwCNxHoeqfoyNIFL0",
+      authDomain: "revonwebsite.firebaseapp.com",
+      projectId: "revonwebsite",
+      storageBucket: "revonwebsite.firebasestorage.app",
+      messagingSenderId: "480120800495",
+      appId: "1:480120800495:web:fdc56c86a98742c959c71a",
+      measurementId: "G-04V159E8RK"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    // Display available bikes
+    const bikeList = document.getElementById("bikeList");
+
+    function displayBikes() {
+        const bikesRef = ref(db, 'bikes/');
+        onValue(bikesRef, (snapshot) => {
+            bikeList.innerHTML = "";
+            const bikes = snapshot.val();
+            for (const key in bikes) {
+                if (bikes[key].available) {
+                    const bike = bikes[key];
+                    bikeList.innerHTML += `
+                        <div class="bike-card">
+                            <h3>${key}</h3>
+                            <img src="${bike.imageUrl}" alt="${key}">
+                            <p>Type: ${bike.type}</p>
+                            <p>${bike.description}</p>
+                        </div>
+                    `;
+                }
+            }
+        });
+    }
+
+    displayBikes();
+</script>
+
 <!-- Contact Section -->
 <section id="contact">
     <h2>Contact Us</h2>
@@ -104,19 +156,12 @@
     <p>&copy; 2025 Revon Motorbike Rentals | All Rights Reserved</p>
 </footer>
 
-<!-- Scripts -->
-<script>
-    // Scroll Functions
-    function scrollLeft() {
-        const container = document.getElementById("scrollableGrid");
-        container.scrollBy({ left: -300, behavior: 'smooth' });
-    }
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-analytics.js";
 
-    function scrollRight() {
-        const container = document.getElementById("scrollableGrid");
-        container.scrollBy({ left: 300, behavior: 'smooth' });
-    }
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
 </script>
-
 </body>
 </html>
