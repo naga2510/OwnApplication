@@ -3,16 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Console</title>
-    <!-- Firebase SDKs as modules -->
-    <script type="module" src="script.js"></script>
+    <title>Revon - RENT-REV-RIDE</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Admin Console</h1>
-    <label for="name">Name:</label>
-    <input type="text" id="name" placeholder="Enter name" />
-    <label for="age">Age:</label>
-    <input type="text" id="age" placeholder="Enter age" />
-    <button id="saveButton">Save Data</button>
+<header>
+    <nav>
+        <h1 class="brand-name">Revon</h1>
+        <p class="tagline">RENT-REV-RIDE</p>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#bikes">Motorbikes</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="admin.html">Admin</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section id="home" class="hero">
+    <div class="hero-content">
+        <h2>Explore The Thrill of Riding</h2>
+        <p>Your trusted motorbike rental service.</p>
+        <a href="#bikes" class="cta-button">Book Your Ride</a>
+    </div>
+</section>
+
+<section id="about">
+    <h2>About Us</h2>
+    <p>At Revon, we offer the best motorbike rental service with a variety of options to suit your needs.</p>
+</section>
+
+<section id="bikes">
+    <h2>Choose Your Ride</h2>
+    <div id="bikeList" class="bike-categories"></div>
+</section>
+
+<section id="contact">
+    <h2>Contact Us</h2>
+    <p>Reach out for bookings and support.</p>
+</section>
+
+<footer>
+    <p>&copy; 2025 Revon Motorbike Rentals | All Rights Reserved</p>
+</footer>
+
+<script type="module" src="script.js"></script>
 </body>
 </html>
