@@ -1,13 +1,23 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-app.js";
 import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-database.js";
 
+document.addEventListener("DOMContentLoaded", () => {
+    const rentButtons = document.querySelectorAll("button");
+    rentButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            alert("Thank you for choosing Revon! Your motorbike booking has been confirmed.");
+        });
+    });
+});
+
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_STORAGE_BUCKET",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
+    apiKey: "AIzaSyCCoJ7lkSPdih-F_hEwCNxHoeqfoyNIFL0",
+    authDomain: "revonwebsite.firebaseapp.com",
+    projectId: "revonwebsite",
+    storageBucket: "revonwebsite.firebasestorage.app",
+    messagingSenderId: "480120800495",
+    appId: "1:480120800495:web:fdc56c86a98742c959c71a",
+    measurementId: "G-04V159E8RK"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -20,14 +30,17 @@ function displayBikes() {
         bikeList.innerHTML = "";
         const bikes = snapshot.val();
         for (const key in bikes) {
-            const bike = bikes[key];
-            bikeList.innerHTML += `
-                <div class="bike-card">
-                    <h3>${bike.name}</h3>
-                    <p>Type: ${bike.type}</p>
-                    <p>${bike.description}</p>
-                </div>
-            `;
+            if (bikes[key].available) {
+                const bike = bikes[key];
+                bikeList.innerHTML += `
+                    <div>
+                        <h3>${key}</h3>
+                        <img src="${bike.imageUrl}" alt="${key}" width="200" height="150">
+                        <p>Type: ${bike.type}</p>
+                        <p>${bike.description}</p>
+                    </div>
+                `;
+            }
         }
     });
 }
