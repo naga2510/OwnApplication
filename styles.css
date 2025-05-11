@@ -230,3 +230,40 @@ footer p {
     background-color: yellow;
 }
 
+/* Hero Section */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-image {
+    width: 75%; /* Set image width to 75% */
+    height: auto;
+    max-height: 100vh;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.swiper-container {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-button-next, .swiper-button-prev {
+    color: yellow;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: yellow;
+}
