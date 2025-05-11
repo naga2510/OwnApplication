@@ -5,57 +5,156 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Revon - RENT-REV-RIDE</title>
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Importing Google Fonts for a sleek modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 
-    <!-- Stylesheet -->
+    <!-- Linking the CSS stylesheet -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<!-- Navigation Bar -->
 <header>
-    <nav class="navbar">
-        <div class="logo">
-            <h1>Revon</h1>
-            <p>RENT-REV-RIDE</p>
-        </div>
+    <nav>
+        <h1 class="brand-name marginTopBottomZero">Revon</h1>
+        <p class="tagline">RENT-REV-RIDE</p>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#bikes">Motorbikes</a></li>
             <li><a href="#contact">Contact</a></li>
-            <li><a href="#admin">Admin</a></li>
         </ul>
     </nav>
 </header>
 
-
+<!-- Hero Section -->
 <section id="home" class="hero">
     <div class="hero-content">
-        <h2>Explore The Thrill of Riding</h2>
+        <h2 class="marginTopBottomZero">Explore The Thrill of Riding</h2>
         <p>Your trusted motorbike rental service.</p>
         <a href="#bikes" class="cta-button">Book Your Ride</a>
     </div>
 </section>
 
+<!-- About Section -->
 <section id="about">
     <h2>About Us</h2>
-    <p>At Revon, we offer the best motorbike rental service with a variety of options to suit your needs.</p>
+    <p>At Revon, we offer the best motorbike rental service with a variety of options to suit your needs. Whether you're looking for a commuter bike or a sport bike, we have it all.</p>
 </section>
 
+<!-- Motorbikes Section -->
 <section id="bikes">
     <h2>Choose Your Ride</h2>
-    <div id="bikeList" class="bike-categories"></div>
+    <div class="bike-categories">
+        <div class="bike-card">
+            <img src="commuter-bike.jpg" alt="Commuter Bike">
+            <h3>Commuter Bikes</h3>
+            <p>Affordable and efficient for daily use.</p>
+        </div>
+        <div class="bike-card">
+            <img src="sport-bike.jpg" alt="Sport Bike">
+            <h3>Sport Bikes</h3>
+            <p>Powerful and fast for an adventurous ride.</p>
+        </div>
+        <div class="bike-card">
+            <img src="scooter.jpg" alt="Scooter">
+            <h3>Scooters</h3>
+            <p>Lightweight and easy to maneuver.</p>
+        </div>
+    </div>
 </section>
 
+<h2>Available Bikes</h2>
+<div id="bikeList"></div>
+
+<script type="module">
+    // Import Firebase SDK
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-app.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-database.js";
+
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyCCoJ7lkSPdih-F_hEwCNxHoeqfoyNIFL0",
+      authDomain: "revonwebsite.firebaseapp.com",
+      projectId: "revonwebsite",
+      storageBucket: "revonwebsite.firebasestorage.app",
+      messagingSenderId: "480120800495",
+      appId: "1:480120800495:web:fdc56c86a98742c959c71a",
+      measurementId: "G-04V159E8RK"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    // Display available bikes
+    const bikeList = document.getElementById("bikeList");
+
+    function displayBikes() {
+      const bikesRef = ref(db, 'bikes/');
+      onValue(bikesRef, (snapshot) => {
+        bikeList.innerHTML = "";
+        const bikes = snapshot.val();
+        for (const key in bikes) {
+          if (bikes[key].available) {
+            const bike = bikes[key];
+            bikeList.innerHTML += `
+              <div class="bike-card">
+                <h3>${key}</h3>
+                <img src="${bike.imageUrl}" alt="${key}">
+                <p>Type: ${bike.type}</p>
+                <p>${bike.description}</p>
+              </div>
+            `;
+          }
+        }
+      });
+    }
+
+    displayBikes();
+</script>
+
+<!-- Contact Section -->
 <section id="contact">
     <h2>Contact Us</h2>
-    <p>Reach out for bookings and support.</p>
+    <p>Get in touch with us for booking inquiries or assistance.</p>
 </section>
+
+
+<h2>Available Bikes</h2>
+<div id="bikeList"></div>
+
+<script type="module" src="user.js"></script>
+
+
+
+
 
 <footer>
     <p>&copy; 2025 Revon Motorbike Rentals | All Rights Reserved</p>
 </footer>
 
-<script type="module" src="script.js"></script>
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyCCoJ7lkSPdih-F_hEwCNxHoeqfoyNIFL0",
+      authDomain: "revonwebsite.firebaseapp.com",
+      projectId: "revonwebsite",
+      storageBucket: "revonwebsite.firebasestorage.app",
+      messagingSenderId: "480120800495",
+      appId: "1:480120800495:web:fdc56c86a98742c959c71a",
+      measurementId: "G-04V159E8RK"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+</script>
 </body>
 </html>
