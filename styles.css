@@ -205,3 +205,61 @@ footer p {
     align-items: center;
     flex-direction: column;
 }
+/* Hero Section */
+.hero {
+    padding: 5rem 2rem;
+    background-color: #333;
+    color: yellow;
+    text-align: center;
+    position: relative;
+    width: 100%;
+    min-height: calc(100vh - 8rem); /* Account for header height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Hero Grid for 5 Columns */
+.hero-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 columns */
+    gap: 1.5rem;
+    justify-items: center;
+    width: 100%; /* Full width for grid stability */
+}
+
+/* Hero Card Styling */
+.hero-card {
+    background-color: #1c1c1c;
+    color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    padding: 1rem;
+    transition: transform 0.3s;
+    width: 90%; /* Maintain consistent width */
+    max-width: 250px; /* Prevent too wide cards */
+}
+
+.hero-card:hover {
+    transform: scale(1.05);
+}
+
+.hero-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.hero-card h3 {
+    margin: 0.5rem 0;
+    font-size: 1.5rem;
+}
+
+.hero-card p {
+    font-size: 1.2rem;
+    color: yellow;
+}
