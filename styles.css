@@ -191,3 +191,17 @@ footer p {
     background-color: white;
     color: yellow;
 }
+/* Hero Section */
+.hero {
+    padding: 5rem 2rem; /* Added top padding to avoid header overlap */
+    background-color: #333;
+    color: yellow;
+    text-align: center;
+    position: relative;
+    width: 100%;
+    min-height: calc(100vh - 8rem); /* Adjusted to account for header height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
