@@ -27,6 +27,7 @@
     </nav>
 </header>
 
+
 <section id="home" class="hero">
     <div class="scroll-container">
         <!-- Scroll Left Button -->
@@ -49,6 +50,36 @@
                 <h3>Interceptor</h3>
                 <p>Rate: ₹1500/day</p>
             </div>
+            <div class="hero-card">
+                <img src="./duke790.jpg" alt="Duke 790" class="hero-image">
+                <h3>Duke 790</h3>
+                <p>Rate: ₹2000/day</p>
+            </div>
+            <div class="hero-card">
+                <img src="./aprillaBike.jpg" alt="Aprilla Bike" class="hero-image">
+                <h3>Aprilla Bike</h3>
+                <p>Rate: ₹1800/day</p>
+            </div>
+            <div class="hero-card">
+                <img src="./interceptor.jpg" alt="Interceptor" class="hero-image">
+                <h3>Interceptor</h3>
+                <p>Rate: ₹1500/day</p>
+            </div>
+            <div class="hero-card">
+                <img src="./duke790.jpg" alt="Duke 790" class="hero-image">
+                <h3>Duke 790</h3>
+                <p>Rate: ₹2000/day</p>
+            </div>
+            <div class="hero-card">
+                <img src="./aprillaBike.jpg" alt="Aprilla Bike" class="hero-image">
+                <h3>Aprilla Bike</h3>
+                <p>Rate: ₹1800/day</p>
+            </div>
+            <div class="hero-card">
+                <img src="./interceptor.jpg" alt="Interceptor" class="hero-image">
+                <h3>Interceptor</h3>
+                <p>Rate: ₹1500/day</p>
+            </div>
         </div>
 
         <!-- Scroll Right Button -->
@@ -56,9 +87,13 @@
     </div>
 </section>
 
+
+ 
 <!-- Swiper.js Styles -->
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
+    
+   
 <section id="home" class="hero">
     <div class="hero-content">
         <h2 class="marginTopBottomZero">Explore The Thrill of Riding</h2>
@@ -122,24 +157,24 @@
     const bikeList = document.getElementById("bikeList");
 
     function displayBikes() {
-        const bikesRef = ref(db, 'bikes/');
-        onValue(bikesRef, (snapshot) => {
-            bikeList.innerHTML = "";
-            const bikes = snapshot.val();
-            for (const key in bikes) {
-                if (bikes[key].available) {
-                    const bike = bikes[key];
-                    bikeList.innerHTML += `
-                        <div class="bike-card">
-                            <h3>${key}</h3>
-                            <img src="${bike.imageUrl}" alt="${key}">
-                            <p>Type: ${bike.type}</p>
-                            <p>${bike.description}</p>
-                        </div>
-                    `;
-                }
-            }
-        });
+      const bikesRef = ref(db, 'bikes/');
+      onValue(bikesRef, (snapshot) => {
+        bikeList.innerHTML = "";
+        const bikes = snapshot.val();
+        for (const key in bikes) {
+          if (bikes[key].available) {
+            const bike = bikes[key];
+            bikeList.innerHTML += 
+              <div class="bike-card">
+                <h3>${key}</h3>
+                <img src="${bike.imageUrl}" alt="${key}">
+                <p>Type: ${bike.type}</p>
+                <p>${bike.description}</p>
+              </div>
+            ;
+          }
+        }
+      });
     }
 
     displayBikes();
@@ -151,15 +186,40 @@
     <p>Get in touch with us for booking inquiries or assistance.</p>
 </section>
 
-<!-- Footer -->
+
+<h2>Available Bikes</h2>
+<div id="bikeList"></div>
+
+<script type="module" src="user.js"></script>
+
+
+
+
+
 <footer>
     <p>&copy; 2025 Revon Motorbike Rentals | All Rights Reserved</p>
 </footer>
 
 <script type="module">
+    // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
 
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyCCoJ7lkSPdih-F_hEwCNxHoeqfoyNIFL0",
+      authDomain: "revonwebsite.firebaseapp.com",
+      projectId: "revonwebsite",
+      storageBucket: "revonwebsite.firebasestorage.app",
+      messagingSenderId: "480120800495",
+      appId: "1:480120800495:web:fdc56c86a98742c959c71a",
+      measurementId: "G-04V159E8RK"
+    };
+
+    // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
 </script>
