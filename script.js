@@ -1,45 +1,35 @@
-// Import Firebase functions
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js";
-import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-app.js";
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-database.js";
 
-// Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyCRS6L1r37hS5kmaWI2vHX2qMUUMc_f5gs",
-    authDomain: "ownapplication-7a0ec.firebaseapp.com",
-    databaseURL: "https://ownapplication-7a0ec-default-rtdb.firebaseio.com",
-    projectId: "ownapplication-7a0ec",
-    storageBucket: "ownapplication-7a0ec.firebasestorage.app",
-    messagingSenderId: "161786089023",
-    appId: "1:161786089023:web:b91da72a8cdf4e2449328a",
-    measurementId: "G-CXWKHRJJMB"
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_AUTH_DOMAIN",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_STORAGE_BUCKET",
+    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+    appId: "YOUR_APP_ID"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const database = getDatabase(app);
+const db = getDatabase(app);
+const bikeList = document.getElementById("bikeList");
 
-// Save data function
-function saveData() {
-    const name = document.getElementById('name').value;
-    const age = document.getElementById('age').value;
-
-    if (name && age) {
-        // Push data to Firebase Realtime Database
-        const userRef = ref(database, 'users/' + Date.now()); // Using Date.now() for unique ID
-        set(userRef, {
-            name: name,
-            age: age
-        })
-        .then(() => {
-            alert("Data saved successfully!");
-        })
-        .catch((error) => {
-            console.error("Error writing to database:", error);
-        });
-    } else {
-        alert("Please enter both name and age.");
-    }
+function displayBikes() {
+    const bikesRef = ref(db, 'bikes/');
+    onValue(bikesRef, (snapshot) => {
+        bikeList.innerHTML = "";
+        const bikes = snapshot.val();
+        for (const key in bikes) {
+            const bike = bikes[key];
+            bikeList.innerHTML += `
+                <div class="bike-card">
+                    <h3>${bike.name}</h3>
+                    <p>Type: ${bike.type}</p>
+                    <p>${bike.description}</p>
+                </div>
+            `;
+        }
+    });
 }
 
-// Attach event listener to save button
-document.getElementById('saveButton').addEventListener('click', saveData);
+displayBikes();
